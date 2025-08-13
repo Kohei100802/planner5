@@ -59,18 +59,15 @@ export default function PlannerPage() {
   }
 
   return (
-    <div className="h-[calc(100vh-3rem)] grid grid-cols-[320px_1fr_420px] gap-3 p-3">
-      <aside className="card overflow-hidden flex flex-col">
+    <div className="layout">
+      <aside className="sidebar">
         <DaySidebar
           selectedDate={selectedDate}
           onChangeDate={setSelectedDate}
         />
       </aside>
-      <main className="card overflow-hidden flex flex-col">
-        <div className="panel-header">
-          <div className="text-sm text-gray-500">Daily Planner</div>
-          <Pomodoro />
-        </div>
+      <main className="calendar">
+        <div className="panel-header"><div className="text-sm text-gray-500">Daily Planner</div><Pomodoro /></div>
         <CalendarPanel date={selectedDate} />
         <div className="border-t border-[var(--card-border)] p-3">
           <h3 className="text-sm font-semibold mb-2">{title}</h3>
@@ -87,7 +84,7 @@ export default function PlannerPage() {
           </div>
         </div>
       </main>
-      <section className="overflow-hidden flex flex-col p-0">
+      <section className="right-panel p-0">
         <RightColumn date={selectedDate} />
       </section>
     </div>
