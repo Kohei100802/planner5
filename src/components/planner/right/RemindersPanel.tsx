@@ -76,7 +76,9 @@ export function RemindersPanel({ date }: { date: Date }) {
         }}>
           <SortableContext items={items.map((i)=>i.id)} strategy={verticalListSortingStrategy}>
             {items.map((item) => (
-              <SortableItem key={item.id} item={item} onToggle={onToggle} onTitle={onTitle} onInfo={onInfo} />
+              <div key={item.id} className="bg-white/60">
+                <SortableItem item={item} onToggle={onToggle} onTitle={onTitle} onInfo={onInfo} />
+              </div>
             ))}
           </SortableContext>
         </DndContext>

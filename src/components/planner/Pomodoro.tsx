@@ -33,13 +33,13 @@ export function Pomodoro() {
 
   return (
     <div className="flex items-center gap-2 text-sm">
-      <span className="px-2 py-1 rounded bg-gray-100">{phase === "work" ? "作業" : "休憩"}</span>
+      <span className="chip">{phase === "work" ? "作業" : "休憩"}</span>
       <span className="font-mono tabular-nums w-[52px] text-center">{mmss}</span>
-      <button className="px-2 py-1 border rounded" onClick={() => setRunning((v) => !v)}>
+      <button className="btn-primary" onClick={() => setRunning((v) => !v)}>
         {running ? "停止" : "開始"}
       </button>
       <button
-        className="px-2 py-1 border rounded"
+        className="px-2 py-1 border rounded-full"
         onClick={() => {
           setRunning(false);
           setPhase("work");

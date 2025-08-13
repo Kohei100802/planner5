@@ -50,9 +50,9 @@ export function CalendarPanel({ date }: Props) {
           const top = (new Date(ev.start).getHours() + new Date(ev.start).getMinutes() / 60) * 48;
           const height = Math.max(40, ((new Date(ev.end).getTime() - new Date(ev.start).getTime()) / 3600000) * 48);
           return (
-            <div key={ev.id} className="absolute left-2 right-2 event-block p-1 text-xs" style={{ top, height }}>
-              <div className="font-medium">{ev.title}</div>
-              <div className="text-[10px] text-gray-600">{format(new Date(ev.start), "HH:mm")} - {format(new Date(ev.end), "HH:mm")}</div>
+            <div key={ev.id} className="absolute left-3 right-3 event-block px-3 py-2 text-xs" style={{ top, height }}>
+              <div className="font-medium tracking-wide">{ev.title}</div>
+              <div className="text-[11px] text-gray-600">{format(new Date(ev.start), "HH:mm")} - {format(new Date(ev.end), "HH:mm")}</div>
             </div>
           );
         })}
