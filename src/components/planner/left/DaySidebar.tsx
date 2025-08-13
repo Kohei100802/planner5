@@ -41,25 +41,24 @@ export function DaySidebar({ selectedDate, onChangeDate }: Props) {
       <div className="grid grid-cols-1 h-full">
         <div className={clsx("pane", collapsed && "hidden")}> 
           <div className="p-3 pt-2">
-            <div className="grid grid-cols-7 gap-1 text-center text-[11px] text-gray-500 mb-2">
-              {"日月火水木金土".split("").map((w) => (
-                <div key={w}>{w}</div>
-              ))}
-            </div>
-            <div className="day-grid">
-              {monthDays.map((d) => {
-                const selected = isSameDay(d, selectedDate);
-                const outside = !isSameMonth(d, viewDate);
-                return (
-                  <button
-                    key={d.toISOString()}
-                    onClick={() => onChangeDate(d)}
-                    className={clsx("day-cell", selected && "selected", outside && "outside")}
-                  >
-                    {getDate(d)}
-                  </button>
-                );
-              })}
+            <div className="mini-month">
+              <div className="mm-title-edges">
+                <button className="btn m-0 btn-mini" onClick={() => setViewDate(addMonths(viewDate, -1))}>{"<"}</button>
+                <div className="mm-center">{format(viewDate, "yyyy年M月", { locale: ja })}</div>
+                <button className="btn m-0 btn-mini" onClick={() => setViewDate(addMonths(viewDate, 1))}>{">"}</button>
+              </div>
+              <div className="mm-grid">
+                {"日月火水木金土".split("").map((w) => (
+                  <div key={w} className="mm-weekday">{w}</div>
+                ))}
+                {monthDays.map((d) => {
+                  const selected = isSameDay(d, selectedDate);
+                  const outside = !isSameMonth(d, viewDate);
+                  return (
+                    <button key={d.toISOString()} onClick={() => onChangeDate(d)} className={clsx("mm-cell", selected && "selected", outside && "outside")}>{getDate(d)}</button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

@@ -3,11 +3,11 @@
 :root {
   --bg-base: #f6f7fb;
   --card-bg: #ffffff;
-  --card-border: #e8eff9; /* soft blue line */
+  --card-border: #eaedf1; /* match 16_Planer --line */
   --text-main: #0f172a; /* slate-900 */
   --text-muted: #6b7280; /* gray-500 */
-  --accent: #2563eb; /* blue-600 */
-  --accent-600: #1d4ed8; /* blue-700 */
+  --accent: #3b82f6; /* 16_Planer primary */
+  --accent-600: #2563eb;
   --chip-bg: #eef2ff; /* indigo-50 */
   --chip-text: #4338ca; /* indigo-700 */
   --rose-100: #ffe4e6;
@@ -18,6 +18,7 @@
   --header-bg: #f8fbff; /* subtle blue */
   --soft-blue: #eef6ff;
   --ios-stroke: #dce7f6;
+  --line: #eaedf1;
 }
 
 @theme inline {
@@ -73,6 +74,16 @@ body {
 .pane::-webkit-scrollbar { width: 8px; height: 8px; }
 .pane::-webkit-scrollbar-thumb { background: #dfe8f3; border-radius: 8px; }
 .pane::-webkit-scrollbar-track { background: transparent; }
+.mini-month { border: 1px solid var(--line); border-radius: 12px; padding: 8px; background: #fbfdff; }
+.mini-month .mm-title-edges { grid-template-columns: 36px 1fr 36px; display: grid; align-items: center; margin-bottom: 6px; }
+.mini-month .mm-center { text-align: center; font-weight: 800; font-size: 13px; color: #0f172a; }
+.mm-weekday { text-align: center; color: var(--text-muted); font-size: 12px; }
+.mm-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; font-size: 12px; }
+.mm-cell { aspect-ratio: 1 / 1; display: grid; place-items: center; border-radius: 10px; color: #111827; background: #f7faff; border: 1px solid #e6eef9; }
+.mm-cell:hover { background: #eef5ff; }
+.mm-cell.selected { background: #e0f2fe; color: #0c4a6e; font-weight: 700; border-color: #cfe6ff; }
+.mm-cell.outside { background: transparent; color: #cbd5e1; border-color: transparent; }
+
 
 /* iOS-like segmented control */
 .segmented {
