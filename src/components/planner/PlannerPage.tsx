@@ -87,7 +87,7 @@ export default function PlannerPage() {
           </div>
         </div>
       </main>
-      <section className="card overflow-hidden flex flex-col p-0">
+      <section className="overflow-hidden flex flex-col p-0">
         <RightColumn date={selectedDate} />
       </section>
     </div>
