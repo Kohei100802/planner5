@@ -81,12 +81,13 @@ body {
 .segmented button { padding: 4px 10px; border-radius: 10px; background: transparent; font-size: 12px; }
 .segmented button.active { background: #fff; box-shadow: var(--shadow-sm); border: 1px solid var(--ios-stroke); }
 
-/* Mini calendar day button */
-.day-btn { height: 30px; width: 30px; border-radius: 999px; border: 1px solid var(--card-border); background: #fff; }
-.day-btn:hover { background: var(--soft-blue); }
-.day-btn.selected { background: #e6f0ff; border-color: var(--ios-stroke); color: #1d4ed8; font-weight: 600; }
-.day-btn.today { position: relative; }
-.day-btn.today::after { content: ""; position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; background: #2563eb; border-radius: 999px; }
+/* Mini calendar day cell (iOS-like, no border by default) */
+.day-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.day-cell { height: 28px; border-radius: 8px; background: transparent; text-align: center; font-size: 13px; line-height: 28px; color: var(--text-main); }
+.day-cell:hover { background: var(--soft-blue); }
+.day-cell.selected { background: #eaf2ff; color: #1d4ed8; font-weight: 600; }
+.day-cell.outside { color: #cbd5e1; }
+.today-dot { display: block; margin: 2px auto 0; width: 4px; height: 4px; background: #2563eb; border-radius: 999px; }
 
 /* Inputs */
 input[type="checkbox"] { accent-color: #2563eb; }

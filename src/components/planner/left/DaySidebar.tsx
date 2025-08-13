@@ -1,5 +1,5 @@
 "use client";
-import { addMonths, endOfMonth, format, getDate, isSameDay, startOfMonth, startOfWeek } from "date-fns";
+import { addMonths, endOfMonth, format, getDate, isSameDay, isSameMonth, isToday, startOfMonth, startOfWeek } from "date-fns";
 import { ja } from "date-fns/locale";
 import clsx from "clsx";
 import { useMemo, useState } from "react";
@@ -46,19 +46,20 @@ export function DaySidebar({ selectedDate, onChangeDate }: Props) {
                 <div key={w}>{w}</div>
               ))}
             </div>
-            <div className="grid grid-cols-7 gap-1 place-items-center">
-              {monthDays.map((d) => (
-                <button
-                  key={d.toISOString()}
-                  onClick={() => onChangeDate(d)}
-                  className={clsx(
-                    "day-btn text-[12px]",
-                    isSameDay(d, selectedDate) && "selected",
-                  )}
-                >
-                  {getDate(d)}
-                </button>
-              ))}
+            <div className="day-grid">
+              {monthDays.map((d) => {
+                const selected = isSameDay(d, selectedDate);
+                const outside = !isSameMonth(d, viewDate);
+                return (
+                  <button
+                    key={d.toISOString()}
+                    onClick={() => onChangeDate(d)}
+                    className={clsx("day-cell", selected && "selected", outside && "outside")}
+                  >
+                    {getDate(d)}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
