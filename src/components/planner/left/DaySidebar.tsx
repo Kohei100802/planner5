@@ -27,16 +27,16 @@ export function DaySidebar({ selectedDate, onChangeDate }: Props) {
 
   return (
     <div className="flex-1 grid grid-rows-[40px_1fr]">
-      <div className="flex items-center justify-between px-3 border-b h-10">
+      <div className="panel-header px-3">
         <button className="text-sm text-gray-600" onClick={() => setCollapsed((v) => !v)}>{collapsed ? "▶" : "◀"} メニュー</button>
         <div className="text-sm text-gray-500">{format(viewDate, "yyyy年M月", { locale: ja })}</div>
         <div className="flex gap-2 text-sm">
-          <button className="border rounded px-2" onClick={() => setViewDate(addMonths(viewDate, -1))}>前</button>
-          <button className="border rounded px-2" onClick={() => setViewDate(addMonths(viewDate, 1))}>次</button>
+          <button className="btn-primary" onClick={() => setViewDate(addMonths(viewDate, -1))}>前</button>
+          <button className="btn-primary" onClick={() => setViewDate(addMonths(viewDate, 1))}>次</button>
         </div>
       </div>
       <div className="grid grid-cols-1 h-full">
-        <div className={clsx("overflow-y-auto", collapsed && "hidden")}> 
+        <div className={clsx("pane", collapsed && "hidden")}> 
           <div className="p-3">
             <div className="grid grid-cols-7 gap-1 text-center text-xs text-gray-500 mb-1">
               {"日月火水木金土".split("").map((w) => (
@@ -59,7 +59,7 @@ export function DaySidebar({ selectedDate, onChangeDate }: Props) {
             </div>
           </div>
         </div>
-        <div className={clsx("overflow-y-auto border-t p-3", collapsed && "row-span-2")}>
+        <div className={clsx("pane border-t border-[var(--card-border)] p-3", collapsed && "row-span-2")}>
           <div className="text-sm text-gray-600 mb-2">カレンダー一覧</div>
           <ul className="space-y-2 text-sm">
             <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-blue-500"></span> 仕事カレンダー</li>

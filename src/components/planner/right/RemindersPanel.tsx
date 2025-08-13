@@ -60,11 +60,11 @@ export function RemindersPanel({ date }: { date: Date }) {
 
   return (
     <div className="flex-1 grid grid-rows-[40px_1fr]">
-      <div className="flex items-center justify-between border-b h-10 px-3">
+      <div className="panel-header">
         <div className="text-sm font-medium">リマインダー</div>
-        <button className="text-sm border rounded px-2" onClick={addNew}>追加</button>
+        <button className="text-sm btn-primary" onClick={addNew}>追加</button>
       </div>
-      <div className="overflow-y-auto">
+      <div className="pane">
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={async (e)=>{
           const { active, over } = e;
           if (!over || active.id === over.id) return;
@@ -80,7 +80,7 @@ export function RemindersPanel({ date }: { date: Date }) {
             ))}
           </SortableContext>
         </DndContext>
-        <div className="border-t p-3">
+        <div className="border-t border-[var(--card-border)] p-3">
           <div className="text-sm font-medium mb-2">⭐ ゴール</div>
           <Goals date={date} />
         </div>
@@ -105,10 +105,10 @@ function Goals({ date }: { date: Date }) {
   };
   return (
     <div>
-      <div className="flex justify-end mb-2"><button className="text-xs border rounded px-2" onClick={add}>追加</button></div>
+      <div className="flex justify-end mb-2"><button className="text-xs btn-primary" onClick={add}>追加</button></div>
       <ul>
         {items.map((g)=>(
-          <li key={g.id} className="flex items-center gap-2 p-2 border-b">
+          <li key={g.id} className="flex items-center gap-2 p-2 border-b border-[var(--card-border)]">
             <input type="checkbox" checked={g.completed} onChange={async ()=>{
               setItems((list)=>list.map((i)=>i.id===g.id?{...i,completed:!i.completed}:i));
               await fetch("/api/goals", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "toggle", id: g.id }) });

@@ -37,20 +37,20 @@ export function CalendarPanel({ date }: Props) {
 
   return (
     <div className="flex-1 grid grid-cols-[56px_1fr]">
-      <div className="border-r text-xs text-gray-500">
+      <div className="border-r border-[var(--card-border)] text-xs text-gray-500">
         {hours.slice(0, 24).map((h, i) => (
           <div key={i} className="h-12 flex items-start justify-end pr-2 pt-1">{format(h, "HH:mm")}</div>
         ))}
       </div>
-      <div className="relative overflow-y-auto">
+      <div className="relative pane">
         {hours.slice(0, 24).map((h, i) => (
-          <div key={i} className="h-12 border-b hover:bg-gray-50 cursor-pointer" onClick={() => openCreate(i)} />
+          <div key={i} className="timeline-cell hover:bg-gray-50 cursor-pointer" onClick={() => openCreate(i)} />
         ))}
         {events.map((ev) => {
           const top = (new Date(ev.start).getHours() + new Date(ev.start).getMinutes() / 60) * 48;
           const height = Math.max(40, ((new Date(ev.end).getTime() - new Date(ev.start).getTime()) / 3600000) * 48);
           return (
-            <div key={ev.id} className="absolute left-2 right-2 rounded bg-red-100 border border-red-300 p-1 text-xs" style={{ top, height }}>
+            <div key={ev.id} className="absolute left-2 right-2 event-block p-1 text-xs" style={{ top, height }}>
               <div className="font-medium">{ev.title}</div>
               <div className="text-[10px] text-gray-600">{format(new Date(ev.start), "HH:mm")} - {format(new Date(ev.end), "HH:mm")}</div>
             </div>
