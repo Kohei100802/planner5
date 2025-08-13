@@ -50,7 +50,7 @@ export function DaySidebar({ selectedDate, onChangeDate }: Props) {
                   onClick={() => onChangeDate(d)}
                   className={clsx(
                     "h-8 rounded text-xs border",
-                    isSameDay(d, selectedDate) ? "bg-blue-600 text-white" : "bg-white hover:bg-gray-50",
+                    isSameDay(d, selectedDate) ? "bg-[var(--soft-blue)] border-[var(--card-border)] text-blue-700 font-medium" : "bg-white hover:bg-[var(--soft-blue)] border-[var(--card-border)]",
                   )}
                 >
                   {getDate(d)}

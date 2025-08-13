@@ -37,12 +37,12 @@ export function CalendarPanel({ date }: Props) {
 
   return (
     <div className="flex-1 grid grid-cols-[56px_1fr]">
-      <div className="border-r border-[var(--card-border)] text-xs text-gray-500">
+      <div className="border-r border-[var(--card-border)] text-xs text-gray-500 bg-[var(--header-bg)]">
         {hours.slice(0, 24).map((h, i) => (
           <div key={i} className="h-12 flex items-start justify-end pr-2 pt-1">{format(h, "HH:mm")}</div>
         ))}
       </div>
-      <div className="relative pane">
+      <div className="relative pane bg-white">
         {hours.slice(0, 24).map((h, i) => (
           <div key={i} className="timeline-cell hover:bg-gray-50 cursor-pointer" onClick={() => openCreate(i)} />
         ))}

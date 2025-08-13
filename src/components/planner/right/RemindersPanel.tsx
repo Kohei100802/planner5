@@ -2,7 +2,7 @@
 import { DndContext, PointerSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core";
 import { SortableContext, arrayMove, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { KeyboardEvent, useEffect, useMemo, useState } from "react";
+import { KeyboardEvent, useEffect, useState } from "react";
 import clsx from "clsx";
 
 type Reminder = { id: string; title: string; position: number; completed: boolean; dueAt?: string | null };
@@ -11,9 +11,9 @@ function SortableItem({ item, onToggle, onTitle, onInfo }: { item: Reminder; onT
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: item.id });
   const style: any = { transform: CSS.Transform.toString(transform), transition };
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners} className={clsx("group flex items-center gap-2 p-2 border-b", isDragging && "bg-blue-50")}> 
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners} className={clsx("group flex items-center gap-2 p-2", isDragging && "bg-blue-50")}> 
       <input type="checkbox" checked={item.completed} onChange={() => onToggle(item.id)} />
-      <input className="flex-1 outline-none" value={item.title} onChange={(e)=>onTitle(item.id, e.target.value)} onKeyDown={(e: KeyboardEvent<HTMLInputElement>)=>{ if(e.key==='Enter'){ (e.target as HTMLInputElement).blur(); } }} />
+      <input className="flex-1 outline-none bg-transparent" value={item.title} onChange={(e)=>onTitle(item.id, e.target.value)} onKeyDown={(e: KeyboardEvent<HTMLInputElement>)=>{ if(e.key==='Enter'){ (e.target as HTMLInputElement).blur(); } }} />
       <button className="opacity-0 group-hover:opacity-100 text-xs border rounded px-1" onClick={()=>onInfo(item.id)}>i</button>
     </div>
   );
@@ -76,16 +76,10 @@ export function RemindersPanel({ date }: { date: Date }) {
         }}>
           <SortableContext items={items.map((i)=>i.id)} strategy={verticalListSortingStrategy}>
             {items.map((item) => (
-              <div key={item.id} className="bg-white/60">
-                <SortableItem item={item} onToggle={onToggle} onTitle={onTitle} onInfo={onInfo} />
-              </div>
+              <SortableItem key={item.id} item={item} onToggle={onToggle} onTitle={onTitle} onInfo={onInfo} />
             ))}
           </SortableContext>
         </DndContext>
-        <div className="border-t border-[var(--card-border)] p-3">
-          <div className="text-sm font-medium mb-2">⭐ ゴール</div>
-          <Goals date={date} />
-        </div>
       </div>
     </div>
   );

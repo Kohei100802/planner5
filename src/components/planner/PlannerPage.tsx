@@ -7,7 +7,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Pomodoro } from "./Pomodoro";
 import { DaySidebar } from "./left/DaySidebar";
-import { RemindersPanel } from "./right/RemindersPanel";
+import RightColumn from "./right/RightColumn";
 import { CalendarPanel } from "./center/CalendarPanel";
 
 export default function PlannerPage() {
@@ -87,8 +87,8 @@ export default function PlannerPage() {
           </div>
         </div>
       </main>
-      <section className="card overflow-hidden flex flex-col">
-        <RemindersPanel date={selectedDate} />
+      <section className="card overflow-hidden flex flex-col p-0">
+        <RightColumn date={selectedDate} />
       </section>
     </div>
   );

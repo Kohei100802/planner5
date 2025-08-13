@@ -26,7 +26,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="ja">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gray-50`}>
-        <header className="h-12 bg-white border-b border-[var(--card-border)] flex items-center justify-between px-4">
+        <header className="h-12 border-b border-[var(--card-border)] flex items-center justify-between px-4" style={{background:"var(--header-bg)"}}>
           <Link href="/" className="font-semibold">Daily Planner</Link>
           <nav className="text-sm text-gray-600">
             {session?.user ? (
